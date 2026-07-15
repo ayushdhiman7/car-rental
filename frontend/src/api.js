@@ -1,5 +1,10 @@
 // Tiny fetch wrapper around the backend REST API.
-const BASE = import.meta.env.VITE_API_BASE || "/api";
+// Set VITE_API_BASE to the full API origin, e.g. https://your-api.onrender.com/api
+const BASE = (import.meta.env.VITE_API_BASE || "").replace(/\/$/, "");
+
+if (!BASE) {
+  console.warn("VITE_API_BASE is not set. API requests will fail.");
+}
 
 async function request(path, options) {
   const res = await fetch(BASE + path, {

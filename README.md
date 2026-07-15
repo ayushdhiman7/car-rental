@@ -96,18 +96,17 @@ npm run seed
 
 ### 4. Configure the frontend
 
-Create `frontend/.env` (or copy the example):
+Create `frontend/.env` (or copy the example). Point it at the **full backend URL**:
 
 ```env
-VITE_API_BASE=/api
+# Local backend
+VITE_API_BASE=http://localhost:4000/api
+
+# Production (Render) — also set this in Vercel → Project → Settings → Environment Variables
+# VITE_API_BASE=https://your-service.onrender.com/api
 ```
 
-In development, Vite proxies `/api` → `http://localhost:4000`.
-For a direct backend URL (e.g. production), set:
-
-```env
-VITE_API_BASE=https://your-api.example.com/api
-```
+There is no Vite proxy — the browser calls the API URL from `VITE_API_BASE` directly.
 
 ### 5. Run
 
