@@ -1,0 +1,340 @@
+/* ============================================================
+   VELOCE — premium car rental UI
+   Dark automotive theme · Sora display + Inter body
+   ============================================================ */
+
+:root {
+  --bg: #0b0d11;
+  --bg-2: #0f1218;
+  --surface: #14181f;
+  --surface-2: #1a1f28;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f3f5f9;
+  --muted: #98a1b0;
+  --accent: #ffb020;
+  --accent-2: #ff8a3c;
+  --accent-grad: linear-gradient(100deg, #ffcf5c, #ff9422);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+  --maxw: 1180px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .brand-text {
+  font-family: "Sora", system-ui, sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; }
+.muted { color: var(--muted); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: "Sora", sans-serif; font-weight: 600; font-size: 0.95rem;
+  padding: 11px 20px; border-radius: 999px; border: 1px solid transparent;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--accent-grad); color: #201400;
+  box-shadow: 0 10px 24px -10px rgba(255, 176, 32, 0.7);
+}
+.btn-primary:hover { box-shadow: 0 14px 30px -8px rgba(255, 176, 32, 0.8); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+.btn-ghost {
+  background: transparent; color: var(--text); border-color: var(--border-strong);
+}
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-lg { padding: 14px 28px; font-size: 1.02rem; }
+
+/* ---------- Navbar ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(11, 13, 17, 0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+.brand-mark { color: var(--accent); font-size: 1.1rem; }
+.brand-text { font-size: 1.25rem; letter-spacing: 0.08em; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--muted); font-weight: 500; font-size: 0.95rem; transition: color 0.15s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active { position: relative; }
+.nav-links a.nav-cta { color: #201400; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; }
+.nav-toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; padding: 72px 0 40px; }
+.hero-glow {
+  position: absolute; top: -160px; right: -80px; width: 620px; height: 620px;
+  background: radial-gradient(circle, rgba(255, 176, 32, 0.22), transparent 62%);
+  filter: blur(20px); pointer-events: none;
+}
+.hero-inner {
+  position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px; align-items: center;
+}
+.eyebrow {
+  display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px;
+}
+.hero-copy h1 { font-size: clamp(2.6rem, 5.5vw, 4.3rem); font-weight: 800; }
+.grad {
+  background: var(--accent-grad); -webkit-background-clip: text;
+  background-clip: text; color: transparent;
+}
+.hero-copy p { color: var(--muted); font-size: 1.1rem; margin: 22px 0 30px; max-width: 480px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 44px; }
+.hero-stats strong { display: block; font-family: "Sora", sans-serif; font-size: 1.7rem; }
+.hero-stats span { color: var(--muted); font-size: 0.85rem; }
+.hero-art {
+  position: relative; border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  transform: perspective(1000px) rotateY(-6deg);
+}
+.hero-art img { width: 100%; height: 420px; object-fit: cover; }
+
+/* ---------- Sections ---------- */
+.section { padding: 56px 0; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; }
+.link-arrow { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+.link-arrow:hover { text-decoration: underline; }
+.page-head { padding: 20px 0 8px; }
+.page-head h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
+.page-head p { color: var(--muted); margin-top: 8px; }
+
+/* ---------- Categories ---------- */
+.category-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+}
+.category-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 12px; cursor: pointer; color: var(--text);
+  transition: transform 0.15s, border-color 0.2s, background 0.2s;
+}
+.category-tile:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-2); }
+.category-icon { font-size: 1.9rem; }
+.category-name { font-family: "Sora", sans-serif; font-weight: 600; }
+.category-count { color: var(--muted); font-size: 0.8rem; }
+
+/* ---------- Car grid + card ---------- */
+.car-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.car-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform 0.18s ease, border-color 0.2s, box-shadow 0.25s;
+}
+.car-card:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.car-card-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-2); }
+.car-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.car-card:hover .car-card-media img { transform: scale(1.06); }
+.car-badge {
+  position: absolute; top: 12px; left: 12px; background: rgba(11, 13, 17, 0.8);
+  backdrop-filter: blur(6px); color: var(--text); font-size: 0.74rem; font-weight: 600;
+  padding: 5px 11px; border-radius: 999px; border: 1px solid var(--border-strong);
+}
+.car-rating {
+  position: absolute; top: 12px; right: 12px; background: rgba(255, 176, 32, 0.92);
+  color: #201400; font-size: 0.76rem; font-weight: 700; padding: 5px 10px; border-radius: 999px;
+}
+.car-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.car-card-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.car-brand { color: var(--muted); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.car-name { font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
+.car-price { text-align: right; }
+.car-price strong { font-family: "Sora", sans-serif; font-size: 1.3rem; color: var(--accent); }
+.car-price span { color: var(--muted); font-size: 0.8rem; }
+.car-specs { list-style: none; display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 0.85rem; }
+.car-cta { margin-top: auto; color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+
+/* ---------- Steps ---------- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+.step-num {
+  display: inline-block; font-family: "Sora", sans-serif; font-weight: 800; font-size: 1.4rem;
+  background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.step h3 { margin: 10px 0 8px; font-size: 1.15rem; }
+.step p { color: var(--muted); }
+
+/* ---------- Toolbar / filters ---------- */
+.toolbar { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.search-box {
+  flex: 1; min-width: 240px; display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0 18px;
+}
+.search-box input { flex: 1; background: none; border: 0; color: var(--text); padding: 13px 0; font-size: 0.95rem; outline: none; }
+.search-box input::placeholder { color: var(--muted); }
+.toolbar select {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+  color: var(--text); padding: 0 18px; font-size: 0.92rem; cursor: pointer; outline: none;
+}
+.chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+.chip {
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  padding: 9px 18px; border-radius: 999px; cursor: pointer; font-weight: 500; font-size: 0.9rem;
+  transition: all 0.15s;
+}
+.chip:hover { color: var(--text); border-color: var(--border-strong); }
+.chip-active { background: var(--accent-grad); color: #201400; border-color: transparent; font-weight: 600; }
+
+/* ---------- Skeleton / empty ---------- */
+.skeleton { min-height: 320px; background: linear-gradient(100deg, var(--surface) 30%, var(--surface-2) 50%, var(--surface) 70%); background-size: 200% 100%; animation: shimmer 1.3s infinite; border: 1px solid var(--border); }
+.detail-skeleton { height: 420px; border-radius: var(--radius); background: linear-gradient(100deg, var(--surface) 30%, var(--surface-2) 50%, var(--surface) 70%); background-size: 200% 100%; animation: shimmer 1.3s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.empty { text-align: center; padding: 60px 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.empty p { color: var(--muted); font-size: 1.05rem; }
+
+/* ---------- Detail page ---------- */
+.back { display: inline-block; margin-bottom: 20px; }
+.detail { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 34px; align-items: start; }
+.detail-media { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.detail-media img { width: 100%; height: 100%; max-height: 460px; object-fit: cover; }
+.detail-info h1 { font-size: 2.4rem; margin-top: 2px; }
+.detail-rating { color: var(--accent); font-weight: 600; margin: 10px 0 18px; }
+.detail-desc { color: var(--muted); font-size: 1.05rem; }
+.detail-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 26px; }
+.detail-specs div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
+.detail-specs span { color: var(--muted); font-size: 0.82rem; display: block; }
+.detail-specs strong { font-family: "Sora", sans-serif; font-size: 1.15rem; }
+
+/* ---------- Booking form ---------- */
+.booking { margin-top: 46px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; }
+.booking h2 { font-size: 1.5rem; margin-bottom: 20px; }
+.booking-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+.field input {
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); padding: 12px 14px; font-size: 0.95rem; font-family: inherit; outline: none;
+  transition: border-color 0.15s;
+}
+.field input:focus { border-color: var(--accent); }
+.field input::placeholder { color: #5c6472; }
+.booking-summary {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px dashed var(--border-strong); padding-top: 18px; margin-top: 4px;
+}
+.booking-summary div { display: flex; justify-content: space-between; width: 100%; align-items: baseline; }
+.booking-summary strong { font-family: "Sora", sans-serif; font-size: 1.6rem; color: var(--accent); }
+.booking-form .btn-lg { grid-column: 1 / -1; }
+.form-error { grid-column: 1 / -1; color: #ff6b6b; font-size: 0.9rem; }
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(4, 6, 10, 0.7); backdrop-filter: blur(6px);
+  display: grid; place-items: center; z-index: 100; padding: 20px; animation: fade 0.2s ease;
+}
+.modal {
+  background: var(--surface); border: 1px solid var(--border-strong); border-radius: 22px;
+  padding: 38px 34px; max-width: 440px; width: 100%; text-align: center;
+  box-shadow: var(--shadow); animation: pop 0.25s ease;
+}
+.modal-check {
+  width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
+  background: var(--accent-grad); color: #201400; font-size: 2rem; font-weight: 800;
+  display: grid; place-items: center;
+}
+.modal h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.modal p { color: var(--muted); }
+.modal-total {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg-2); border-radius: var(--radius-sm); padding: 14px 18px; margin: 20px 0 12px;
+}
+.modal-total strong { font-family: "Sora", sans-serif; font-size: 1.5rem; color: var(--accent); }
+.modal-actions { display: flex; gap: 12px; justify-content: center; margin-top: 22px; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: scale(0.94) translateY(10px); } }
+
+/* ---------- My bookings ---------- */
+.lookup { display: flex; gap: 12px; max-width: 500px; margin: 22px 0 34px; }
+.lookup input {
+  flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+  color: var(--text); padding: 13px 20px; font-size: 0.95rem; outline: none;
+}
+.lookup input:focus { border-color: var(--accent); }
+.booking-list { display: flex; flex-direction: column; gap: 14px; }
+.booking-row {
+  display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px;
+}
+.booking-row img { width: 120px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); }
+.booking-row-main h3 { font-size: 1.15rem; margin: 2px 0 4px; }
+.booking-row-side { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.booking-row-side strong { font-family: "Sora", sans-serif; font-size: 1.25rem; color: var(--accent); }
+.status { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 999px; }
+.status-confirmed { background: rgba(64, 220, 130, 0.15); color: #5fe0a0; }
+
+/* ---------- Footer ---------- */
+.footer { border-top: 1px solid var(--border); background: var(--bg-2); margin-top: 40px; }
+.footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 30px; padding: 52px 24px 30px; }
+.footer-brand .brand-mark { font-size: 1.1rem; }
+.footer-brand .brand-text { font-size: 1.2rem; }
+.footer-brand p { color: var(--muted); margin-top: 12px; max-width: 260px; font-size: 0.92rem; }
+.footer-col h4 { font-size: 0.95rem; margin-bottom: 14px; }
+.footer-col a { display: block; color: var(--muted); font-size: 0.9rem; padding: 5px 0; transition: color 0.15s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom {
+  display: flex; justify-content: space-between; padding: 20px 24px; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 0.82rem; flex-wrap: wrap; gap: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-art { transform: none; order: -1; }
+  .hero-art img { height: 300px; }
+  .category-grid { grid-template-columns: repeat(3, 1fr); }
+  .car-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+  .detail { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 4px;
+    background: var(--bg-2); border-bottom: 1px solid var(--border); padding: 14px 24px 22px;
+    align-items: stretch; display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 10px 0; }
+  .nav-cta { text-align: center; margin-top: 8px; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .car-grid { grid-template-columns: 1fr; }
+  .booking-form { grid-template-columns: 1fr; }
+  .hero-stats { gap: 26px; }
+  .booking-row { grid-template-columns: 1fr; text-align: left; }
+  .booking-row img { width: 100%; height: 160px; }
+  .booking-row-side { text-align: left; align-items: flex-start; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .lookup { flex-direction: column; }
+}
